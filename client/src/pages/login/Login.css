@@ -1,0 +1,69 @@
+.Login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Login-form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  width: 25%;
+  height: 30%;
+  overflow-x: clip;
+  background: rgba(251, 251, 251, 0.33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.3px);
+  -webkit-backdrop-filter: blur(7.3px);
+  border: 1px solid rgba(253, 253, 253, 0.39);
+}
+
+h3 {
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.Login-form > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.Login-form > div > input {
+  width: 110%;
+  outline: none;
+  border: none;
+}
+
+.auth-btn {
+  width: 80%;
+  font-size: 16px;
+  align-self: center;
+  height: 3rem;
+  padding: 20px;
+}
+
+.auth-btn:disabled {
+  cursor: not-allowed;
+}
+
+.loading-icon {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.register:hover {
+  cursor: pointer;
+}
+
+.register_link {
+  text-decoration: none;
+  color: orange;
+}

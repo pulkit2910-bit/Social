@@ -1,0 +1,120 @@
+.ProfileCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  padding-bottom: 1rem;
+  gap: 1rem;
+  position: relative;
+  overflow-x: clip;
+  background: rgba(251, 251, 251, 0.33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.3px);
+  -webkit-backdrop-filter: blur(7.3px);
+  border: 1px solid rgba(253, 253, 253, 0.39);
+}
+
+.ProfileImages {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-cover {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
+}
+
+.profile-cover {
+  width: 100%;
+  max-height: 22rem;
+  object-fit: cover;
+}
+
+
+.ProfileImages > img:nth-of-type(2) {
+  position: absolute;
+  object-fit: cover;
+  height: 6.5rem;
+  width: 6.5rem;
+  border-radius: 50%;
+  bottom: -3rem;
+  box-sizing: var(--profileShadow);
+}
+
+.ProfileName {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ProfileName > span:nth-of-type(1) {
+  font-weight: bold;
+}
+
+.followStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.followStatus > hr {
+  width: 85%;
+  border: 1px solid var(--hrColor);
+  background-color: var(--hrColor);
+}
+
+.followStatus > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 33%;
+}
+
+.follow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.follow > span:nth-of-type(1) {
+  font-weight: bold;
+}
+
+.follow > span:nth-of-type(2) {
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.vl {
+  border: 1.5px solid var(--hrColor);
+  background-color: var(--hrColor);
+  height: 125%;
+  width: 2px;
+}
+
+.profile-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-link:hover {
+  cursor: pointer;
+}
+
+.profile-link > span {
+  font-weight: bold;
+  color: rgb(255, 136, 0);
+  align-self: center;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}

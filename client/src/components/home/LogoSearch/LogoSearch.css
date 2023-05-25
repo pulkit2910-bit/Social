@@ -1,0 +1,106 @@
+.LogoSearch {
+  align-items: center;
+  width: 100%;
+}
+
+.search {
+  display: flex;
+  gap: 1rem;
+}
+
+.searchBar {
+  display: flex;
+  background-color: var(--inputColor);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.searchBar > input {
+  overflow: auto;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  color: white;
+  background: linear-gradient(106.23deg, #f99827, #f95f35 100%);
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+}
+
+.results {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 89%;
+  margin-left: auto; 
+  margin-right: auto; 
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  gap: 1.5rem;
+  font-size: 16px;
+  list-style-type: none;
+  padding: 1rem;
+  overflow-x: clip;
+  background: rgba(252, 251, 251, 0.33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(253, 253, 253, 0.39);
+}
+
+.resultsCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultsCard > div {
+  gap: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.userImg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.userName > span:nth-of-type(1) {
+  font-weight: bold;
+}
+
+.fc-btn {
+  height: 2rem;
+  padding: 5px 20px;
+}
+
+.loadingIcon {
+  height: 5rem;
+  width: 5rem;
+  align-self: center;
+}
+
+.noResults {
+  align-self: center;
+  font-weight: bolder;
+}

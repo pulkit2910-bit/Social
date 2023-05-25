@@ -1,0 +1,57 @@
+.onlineFriends {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  border-radius: 1.25rem;
+  background: rgba(251, 251, 251, 0.33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.3px);
+  -webkit-backdrop-filter: blur(7.3px);
+  border: 1px solid rgba(253, 253, 253, 0.39);
+}
+
+.follower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.follower > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.followerImg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.followerName {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.followerName > span:nth-of-type(1) {
+  font-weight: bold;
+}
+
+.msg-btn {
+  height: 2.5rem;
+  padding: 5px 20px;
+  font-size: 14px;
+}
+
+.r-btn {
+  width: 80%;
+  font-size: 16px;
+  align-self: center;
+  height: 3rem;
+  padding: 5px 20px;
+}

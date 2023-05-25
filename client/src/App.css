@@ -1,0 +1,86 @@
+:root {
+  --yellow: #f5c32c;
+  --orange: #fca61f;
+  --black: #242d49;
+  --gray: rgba(36, 45, 73, 0.65);
+  --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
+  --hrColor: #cfcdcd;
+  --cardColor: rgba(255, 255, 255, 0.64);
+  --buttonBg: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
+  --inputColor: rgba(40, 52, 62, 0.07);
+  --photo: #4cb256;
+  --video: #4a4eb7;
+  --location: #ef5757;
+  --shedule: #f8a604;
+}
+
+html, body {
+  scroll-margin-bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.App {
+  overflow: hidden;
+  margin: 0;
+  background-color: rgb(235, 234, 234);
+  padding: 1rem 1.5rem;
+  color: var(--black);
+}
+
+.blur1 {
+  position: absolute;
+  background: rgb(138, 222, 249);
+  height: 15rem;
+  width: 28rem;
+  border-radius: 50%;
+  filter: blur(125px);
+}
+
+.blur2 {
+  position: absolute;
+  background: rgb(255, 210, 177);
+  height: 15rem;
+  width: 28rem;
+  border-radius: 50%;
+  filter: blur(125px);
+}
+
+.blur3 {
+  position: absolute;
+  background: rgb(69, 252, 75);
+  height: 8rem;
+  width: 40rem;
+  border-radius: 50%;
+  filter: blur(125px);
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease-out;
+  color: white;
+  border-radius: 0.5rem;
+  background: var(--buttonBg);
+  border: none;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid var(--orange);
+  color: var(--orange);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+h2 {
+  margin: 0;
+}

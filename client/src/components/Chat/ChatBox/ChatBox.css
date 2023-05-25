@@ -1,0 +1,102 @@
+.ChatBox {
+  display: flex;
+  flex-direction: column;
+  height: 93vh;
+  max-height: 93vh;
+  gap: 1rem;
+  border-radius: 1.25rem;
+  background: rgba(251, 251, 251, 0.33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.3px);
+  -webkit-backdrop-filter: blur(7.3px);
+  border: 1px solid rgba(253, 253, 253, 0.39);
+}
+
+.chatLoading {
+  margin: auto;
+  width: 6rem;
+  height: 6rem;
+}
+
+.ChatBox > hr {
+  width: 100%;
+  border: 1px solid rgb(195, 194, 194);
+}
+
+.chatboxheader > div {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+}
+
+.friendImg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friendName {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.friendName > span:nth-of-type(1) {
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+.friendName > span:nth-of-type(2) {
+  font-size: 0.9rem;
+}
+
+/* Middle */
+.chatboxmiddle {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+/* Footer */
+.chatboxfooter {
+  padding: 0 1.5rem;
+}
+
+.sendmessage {
+  width: 94%;
+  display: grid;
+  grid-template-columns: 5% auto 10%;
+  gap: 1rem;
+  padding-left: 1rem;
+}
+
+.sendmessage > img :hover {
+  cursor: pointer;
+}
+
+.sendmessage > input {
+  background-color: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 0.5px solid gray;
+  padding: 0.75rem;
+  outline: none;
+  font-size: 1rem;
+}
+
+.sendmessage > input :focus {
+  border-bottom: 2px solid black;
+}
+
+.noConversation {
+  position: absolute;
+  top : 20%;
+  text-align: center;
+  font-size: 5rem;
+  color: rgb(156, 156, 156);
+}

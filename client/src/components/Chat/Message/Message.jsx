@@ -1,6 +1,6 @@
 import React from "react";
 import "./Message.css";
-import { format } from "timeago.js"
+import TimeAgo from 'react-timeago'
 
 const Message = ({ own, message }) => {
   return (
@@ -10,7 +10,7 @@ const Message = ({ own, message }) => {
           {message.text}
         </div>
       </div>
-      <div className="messageBottom">{format(message.createdAt)}</div>
+      <div className="messageBottom">{<TimeAgo date={message.createdAt} />}</div>
     </div>
   );
 };

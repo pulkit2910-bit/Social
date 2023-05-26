@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import "./Post.css";
-
+import TimeAgo from 'react-timeago'
 import Like from "../../../img/like.png";
 import NotLike from "../../../img/notlike.png";
 import Comment from "../../../img/comment.png";
@@ -129,6 +129,9 @@ const Post = ({ post, profile }) => {
           <div className="details">
             <span>{user.name}</span>
             <span> {post.desc}</span>
+          </div>
+          <div className="postBottom">
+            <TimeAgo date={post.createdAt} />
           </div>
         </>
       )}

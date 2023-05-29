@@ -181,6 +181,22 @@ const followUser = async (req, res) => {
           $push: { following: req.params.userID },
         });
         await followUser.updateOne({ $push: { followers: req.data.userID } });
+
+        const followUserID = followUser._id.toString();
+        const currentUserID = currentUser._id.toString();
+        const doesConvoExist = await Conversation.findOne({
+          members : { $all : [followUserID, currentUserID]}
+        })
+
+        if (!doesConvoExist) {
+          const conversation = await new Conversation({
+            members : [followUserID, currentUserID]
+          });
+          const newConvo = await conversation.save();
+          // console.log(newConvo);
+        }
+
+        
         res.status(200).json("You started following this user");
       } else {
         // if currentUser already follows followedUser

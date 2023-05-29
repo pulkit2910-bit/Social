@@ -8,14 +8,17 @@ import { followUser, unfollowUser } from "../../../apiCalls";
 const UserProfileCard = ({ user }) => {
   const {user : currentUser, dispatch} = useContext(AuthContext);
   const [isFollowing, setIsfollowing] = useState(user.followers.includes(currentUser._id));
+  const [no_followers, set_no_followers] = useState(user.followers.length);
   // console.log(currentUser)
 
   const followHandler = async () => {
+    set_no_followers(no_followers+1);
     setIsfollowing(true);
     followUser(currentUser, user, dispatch);
   }
   
   const unfollowHandler = async () => {
+    set_no_followers(no_followers-1);
     setIsfollowing(false);
     unfollowUser(currentUser, user, dispatch)
   }
@@ -36,7 +39,7 @@ const UserProfileCard = ({ user }) => {
         <hr />
         <div>
           <div className="follow">
-            <span>{user.followers.length}</span>
+            <span>{no_followers}</span>
             <span>Followers</span>
           </div>
           <div className="vl"></div>

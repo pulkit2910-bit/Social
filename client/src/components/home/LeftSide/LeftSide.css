@@ -1,9 +1,9 @@
 .LeftSide {
     display: flex;
-    position: sticky;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
     overflow: auto;
     padding: 0.5rem;
+    height: 100vh;
 }

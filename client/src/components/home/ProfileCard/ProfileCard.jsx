@@ -35,12 +35,6 @@ const ProfileCard = ({ profile }) => {
         <hr />
       </div>
 
-      {!profile && (
-        <Link to="/profile" className="profile-link">
-          <span>My Profile</span>
-        </Link>
-      )}
-
     </div>
   );
 };

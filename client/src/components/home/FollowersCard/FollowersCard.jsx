@@ -26,7 +26,10 @@ const FollowersCard = () => {
 
   if (loading) {
     return (
-      <SkeletonTheme baseColor="rgba(251, 251, 251, 0.33)" highlightColor="rgba(83, 84, 84, 0.33)">
+      <SkeletonTheme
+        baseColor="rgba(251, 251, 251, 0.33)"
+        highlightColor="rgba(83, 84, 84, 0.33)"
+      >
         <div>
           <Skeleton height={100} />
         </div>
@@ -40,21 +43,21 @@ const FollowersCard = () => {
       {followers &&
         followers.map((f, k) => {
           return (
-            <div className="follower" key={k}>
-              <div>
-                <img src={f.data.avatar.url} alt="" className="followerImg" />
-                <div className="followerName">
-                  <span>{f.data.name}</span>
-                  <span>{f.data.username}</span>
+            <Link
+              to={`/profile/${f.data._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="follower" key={k}>
+                <div>
+                  <img src={f.data.avatar.url} alt="" className="followerImg" />
+                  <div className="followerName">
+                    <span>{f.data.name}</span>
+                    <span>{f.data.username}</span>
+                  </div>
                 </div>
-              </div>
-              <Link
-                to={`/profile/${f.data._id}`}
-                style={{ textDecoration: "none" }}
-              >
                 <button className="button fc-btn">Show Profile</button>
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })}
     </div>

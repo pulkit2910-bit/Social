@@ -42,5 +42,6 @@
   flex-direction: column;
   gap: 0.5rem;
   height: 71vh;
+  overflow: scroll;
 }
 

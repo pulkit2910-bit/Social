@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Conversation = require("../models/Conversation");
 const bcrypt = require("bcryptjs");
 const { getDataUri } = require("../utils/dataUri");
 const cloudinary = require("cloudinary");

@@ -34,12 +34,17 @@ const ChatBox = ({ currentUser, currConversation }) => {
   }, [arrivalMessage, currConversation]);
   
   useEffect(() => {
+    scrollRef.current?.scrollIntoView({behavior : "smooth"});
+  }, [messages])
+
+  useEffect(() => {
     socket.current.emit("addUser", currentUser._id);
     // socket.current.on("getUsers", (users) => {
       // console.log(users);
     // })
   }, [currentUser])
 
+  // fetch current conversation messages
   useEffect(() => {
     setLoading(true);
     const fetchMessages = async () => {
@@ -51,10 +56,7 @@ const ChatBox = ({ currentUser, currConversation }) => {
 
   }, [currConversation]);
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({behavior : "smooth"});
-  }, [messages])
-
+  // fetch conversation friend
   useEffect(() => {
     const friendID = currConversation?.members?.find((m) => m !== currentUser._id);
     const fetchUser = async () => {
@@ -79,6 +81,7 @@ const ChatBox = ({ currentUser, currConversation }) => {
 
     const receiverID = currConversation.members.find(member => member !== currentUser._id)
 
+    // realtime sending message
     socket.current.emit("sendMessage", {
       senderID : currentUser._id,
       receiverID : receiverID,

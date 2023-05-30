@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./ChatBox.css";
 import LoadingGif from "../../../img/Loading.gif"
 import Emoji from "../../../img/emoji.png"
 import Message from "../Message/Message";
 import axios from "axios";
-import {io} from "socket.io-client"
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 const ChatBox = ({ currentUser, currConversation }) => {
+  const { socket } = useContext(AuthContext);
   const [friend, setFriend] = useState({});  
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -14,11 +15,9 @@ const ChatBox = ({ currentUser, currConversation }) => {
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
   const scrollRef = useRef();
-  const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:9000");
-    socket.current.on("getMessage", (data) => {
+    socket.on("getMessage", (data) => {
       setArrivalMessage({
         senderID : data.senderID,
         text : data.text,
@@ -26,30 +25,18 @@ const ChatBox = ({ currentUser, currConversation }) => {
       })
       console.log(data);
     })
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     arrivalMessage && currConversation?.members.includes(arrivalMessage.senderID) &&
     setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currConversation]);
-  
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({behavior : "smooth"});
-  }, [messages])
-
-  useEffect(() => {
-    socket.current.emit("addUser", currentUser._id);
-    // socket.current.on("getUsers", (users) => {
-      // console.log(users);
-    // })
-  }, [currentUser])
 
   // fetch current conversation messages
   useEffect(() => {
     setLoading(true);
     const fetchMessages = async () => {
       const res = await axios.get(`/messages?convoID=${currConversation._id}`);
-      // console.log(res.data);
       setMessages(res.data);
     }
     if (currConversation) fetchMessages();
@@ -63,15 +50,17 @@ const ChatBox = ({ currentUser, currConversation }) => {
       const res = friendID!=="" ? await axios.get(`/users?userID=${friendID}`): {};
       setFriend(res.data);
       setLoading(false);
-      // console.log(res.data);
     };
     if (currConversation) fetchUser();
   }, [currConversation, currentUser._id]);
 
+  useEffect(() => { 
+    scrollRef.current?.scrollTo(0, scrollRef.current.scrollHeight)
+  }, [messages, currConversation]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (text==="") return;
-
     setSending(true);
     const newMsg = {
       conversationID : currConversation._id,
@@ -82,7 +71,7 @@ const ChatBox = ({ currentUser, currConversation }) => {
     const receiverID = currConversation.members.find(member => member !== currentUser._id)
 
     // realtime sending message
-    socket.current.emit("sendMessage", {
+    socket.emit("sendMessage", {
       senderID : currentUser._id,
       receiverID : receiverID,
       text : text
@@ -102,7 +91,6 @@ const ChatBox = ({ currentUser, currConversation }) => {
     return (
       <div className="ChatBox">
         <img src={LoadingGif} alt="" className="chatLoading" />
-        {/* <Loading /> */}
       </div>
     )
   }
@@ -122,17 +110,14 @@ const ChatBox = ({ currentUser, currConversation }) => {
             <hr />
           </div>
 
-
-          <div className="chatboxmiddle">
-            <div>
-              {
-                messages.map((m, k) => {
-                  return (<div ref={scrollRef}>
-                    <Message own={m.senderID === currentUser._id} message={m} key={k} />
-                  </div>)
-                })
-              }
-            </div>
+          <div className="chatboxmiddle" ref={scrollRef}>
+            {
+              messages.map((m, k) => {
+                return (<div>
+                  <Message own={m.senderID === currentUser._id} message={m} key={k} />
+                </div>)
+              })
+            }
           </div>
 
           <div className="chatboxfooter">

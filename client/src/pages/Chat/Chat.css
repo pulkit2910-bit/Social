@@ -4,10 +4,10 @@
   display: grid;
   grid-template-columns: 20% 55% auto;
   gap: 1.15rem;
-  height: 95vh;
-  min-height: 95vh;
+  /* height: 95vh; */
+  /* min-height: 95vh; */
   padding: 0.5rem;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .ChatLeft {

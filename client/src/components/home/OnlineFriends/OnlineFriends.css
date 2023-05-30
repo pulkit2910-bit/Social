@@ -12,6 +12,12 @@
   border: 1px solid rgba(253, 253, 253, 0.39);
 }
 
+.no-online-users {
+  text-align: center;
+  font-size: 1.5em;
+  color: rgb(156, 156, 156)
+}
+
 .follower {
   display: flex;
   justify-content: space-between;

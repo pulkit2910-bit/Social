@@ -1,69 +1,90 @@
-import React from 'react'
-import "./OnlineFriends.css"
+import React, { useContext, useEffect, useState } from "react";
+import "./OnlineFriends.css";
 
-//images
-import img1 from '../../../img/img1.png'
-import img2 from '../../../img/img2.png'
-import img3 from '../../../img/img3.png'
-import img4 from '../../../img/img4.jpg'
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+import axios from "axios";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Link } from "react-router-dom";
 
 const OnlineFriends = () => {
+  const { user: currentUser, socket } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [onlineUsersID, setOnlineUsersID] = useState([]);
+  let friends = currentUser.following;
+
+  // connecting to socket and adding current user to socket server
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("user connected");
+    });
+    socket.emit("addUser", currentUser._id);
+  }, [currentUser, socket]);
+
+  // getting all online users connected to socket server and filtering online friends of current user
+  useEffect(() => {
+    socket.on("getUsers", (users) => {
+      const usersID = users.filter((user) => friends.includes(user.userID));
+      setOnlineUsersID(usersID);
+    });
+  }, [socket, friends]);
+
+  // getting data of online friends
+  useEffect(() => {
+    const getOnlineFollowingUsers = async () => {
+      const res = await Promise.all(
+        onlineUsersID?.map((user) => {
+          return axios.get(`/users?userID=${user.userID}`);
+        })
+      )
+      setOnlineUsers(res);
+      setLoading(false);
+    }
+    getOnlineFollowingUsers();
+  }, [onlineUsersID])
+
+  if (loading && onlineUsers) {
+    return (
+      <SkeletonTheme
+        baseColor="rgba(251, 251, 251, 0.33)"
+        highlightColor="rgba(83, 84, 84, 0.33)"
+      >
+        <div>
+          <Skeleton height={100} />
+        </div>
+      </SkeletonTheme>
+    );
+  }
+
   return (
     <div className="onlineFriends">
-        <h2>Online Friends</h2>
-        <div className="follower">
-          <div>
-            <img src={img1} alt="" className='followerImg' />
-            <div className="followerName">
-              <span>name</span>
-              <span>@username</span>
-            </div>
-          </div>
-          <button className='button msg-btn'>
-            Message
-          </button>
+      <h2>Online Friends</h2>
+      {onlineUsers.length === 0 && 
+        <div className="no-online-users">
+          No online users
         </div>
-
-        <div className="follower">
-          <div>
-            <img src={img2} alt="" className='followerImg' />
-            <div className="followerName">
-              <span>name2</span>
-              <span>@username2</span>
+      }
+      {onlineUsers?.map((user, key) => {
+        return (
+          <div className="follower" key={key}>
+            <div>
+              <img src={user.data.avatar.url} alt="" className="followerImg" />
+              <div className="followerName">
+                <span>{user.data.name}</span>
+                <span>{user.data.username}</span>
+              </div>
             </div>
+            <button className="button msg-btn">
+              <Link to={"/inbox"}>
+                Message
+              </Link>
+            </button>
           </div>
-          <button className='button msg-btn'>
-            Message
-          </button>
-        </div>
+        );
+      })}
+    </div>
+  );
+};
 
-        <div className="follower">
-          <div>
-            <img src={img3} alt="" className='followerImg' />
-            <div className="followerName">
-              <span>name3</span>
-              <span>@username3</span>
-            </div>
-          </div>
-          <button className='button msg-btn'>
-            Message
-          </button>
-        </div>
-
-        <div className="follower">
-          <div>
-            <img src={img4} alt="" className='followerImg' />
-            <div className="followerName">
-              <span>name4</span>
-              <span>@username4</span>
-            </div>
-          </div>
-          <button className='button msg-btn'>
-            Message
-          </button>
-        </div>
-      </div>
-  )
-}
-
-export default OnlineFriends
+export default OnlineFriends;

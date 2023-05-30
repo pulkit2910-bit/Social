@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import AuthReducer from "./AuthReducer";
+import {io} from "socket.io-client"
 
 const INITIAL_STATE = {
   user: null,
@@ -7,6 +8,7 @@ const INITIAL_STATE = {
   error: false,
 };
 
+const socket = io("ws://localhost:9000");
 const AuthContext = createContext(INITIAL_STATE);
 
 const AuthContextProvider = ({ children }) => {
@@ -18,6 +20,7 @@ const AuthContextProvider = ({ children }) => {
         user: state.user,
         isFetching: state.isFetching,
         error: state.error,
+        socket: socket,
         dispatch
       }}
     >

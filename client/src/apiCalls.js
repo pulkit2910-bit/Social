@@ -1,14 +1,14 @@
 import axios from "axios";
 
 // auth api call
-const loginCall = async (userCredentials, dispath) => {
-    dispath({ type: "LOGIN_START" });
+const loginCall = async (userCredentials, dispatch) => {
+    dispatch({ type: "LOGIN_START" });
     try {
         const res = await axios.post("/auth/login", userCredentials);
-        dispath({ type: "LOGIN_SUCCESS", payload: res.data.user });
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.user });
         // console.log(res);
     } catch(err) {
-        dispath({ type: "LOGIN_FAILURE", payload : err });
+        dispatch({ type: "LOGIN_FAILURE", payload : err });
         console.log(err);
     }
 }

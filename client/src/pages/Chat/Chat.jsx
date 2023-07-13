@@ -17,15 +17,11 @@ const Chat = () => {
   useEffect(() => {
     const fetchConversations = async () => {
       const res = await axios.get(`/conversations?userID=${user._id}`);
-      // console.log(res);
       setConversations(res.data);
     };
     fetchConversations();
     setLoading(false);
   }, [user._id]);
-
-
-  // console.log(currConversation);
 
   if (loading) {
     return <Loading />;

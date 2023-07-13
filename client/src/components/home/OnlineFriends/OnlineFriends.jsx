@@ -16,9 +16,6 @@ const OnlineFriends = () => {
 
   // connecting to socket and adding current user to socket server
   useEffect(() => {
-    socket.on("connect", () => {
-      console.log("user connected");
-    });
     socket.emit("addUser", currentUser._id);
   }, [currentUser, socket]);
 

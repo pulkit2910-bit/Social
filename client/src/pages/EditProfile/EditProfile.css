@@ -117,7 +117,7 @@
   border-radius: 10px;
   outline: none;
   border: none;
-  background-color: var(--inputColor);
+  background-color: rgba(255, 151, 67, 0.07);
   font-size: 16px;
 }
 

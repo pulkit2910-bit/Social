@@ -14,7 +14,7 @@
   padding: 2rem;
   gap: 1rem;
   width: 25%;
-  height: 30%;
+  height: 50%;
   overflow-x: clip;
   background: rgba(251, 251, 251, 0.33);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,14 +31,28 @@ h3 {
 }
 
 .Login-form > div {
-  display: flex;
+  width: 80%;
+  margin: 0 auto;
   gap: 0.5rem;
 }
 
 .Login-form > div > input {
-  width: 110%;
+  width: 100%;
   outline: none;
   border: none;
+  display: block;
+  height: 50px;
+  background-color: rgba(255, 151, 67, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.Login-form > div > input:focus {
+  border-bottom: 2px solid var(--orange);
+  transition: all 0.25s;
 }
 
 .auth-btn {
@@ -65,5 +79,6 @@ h3 {
 
 .register_link {
   text-decoration: none;
+  text-align: center;
   color: orange;
 }

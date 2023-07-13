@@ -1,12 +1,14 @@
 import "./LogoSearch.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Logo from "../../../img/logo.png";
 import { BiSearch } from "react-icons/bi";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import LoadIcon from "../../../img/Loading.gif";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 const LogoSearch = () => {
+  const { user : currentUser } = useContext(AuthContext);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,12 +21,12 @@ const LogoSearch = () => {
       const res = await axios.get("/users/search", {
         params: { q: query, limit: 8 },
       });
-      setResults(res.data.data);
+      setResults(res.data.data.filter((user) => user._id !== currentUser._id));
       setLoading(false);
     };
 
     fetchUsers();
-  }, [query]);
+  }, [query, currentUser]);
 
   return (
     <div className="LogoSearch">

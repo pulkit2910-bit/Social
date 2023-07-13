@@ -64,9 +64,9 @@ const Post = ({ post, profile }) => {
     // console.log(user);
   }, [currentUser._id, post]);
 
-  const likeHandler = () => {
+  const likeHandler = async () => {
     try {
-      axios.put(`/posts/like/${post._id}`);
+      await axios.put(`/posts/like/${post._id}`);
     } catch (err) {}
     setLikes(isLiked ? likes - 1 : likes + 1);
     setIsLiked(!isLiked);

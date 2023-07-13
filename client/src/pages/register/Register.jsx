@@ -37,6 +37,10 @@ const Register = () => {
       <form className="Register-form" onSubmit={handleSubmit}>
         <h3>Register</h3>
 
+        <div className="profile_pic">
+          <label>Profile Pic</label>
+          <input type="file" name="profile_pic" onChange={handleChange} />
+        </div>
         <div className="name">
           <label>Name</label>
           <input type="text" name="name" required ref={name} />
@@ -52,10 +56,6 @@ const Register = () => {
         <div className="password">
           <label>Password</label>
           <input type="password" name="password" required minLength="4" ref={password} />
-        </div>
-        <div className="profile_pic">
-          <label>Password</label>
-          <input type="file" name="profile_pic" onChange={handleChange} />
         </div>
 
         <button className="button auth-btn" type="submit">Register</button>

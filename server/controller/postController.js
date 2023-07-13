@@ -50,6 +50,11 @@ const deletePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.postID);
         !post && res.status(404).json('Post not found !');
+
+        const postID = post.img.public_id;
+        if (postID) {
+            await cloudinary.v2.uploader.destroy(postID);
+        }
         
         if (post.userID === userID) {
             await Post.findByIdAndDelete(req.params.postID);
